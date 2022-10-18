@@ -43,22 +43,22 @@ router.get('/student-details/:name', function(req, res){
 })
 // **1**
 router.get('/movies', function(req, res) {
-    let movies = ['Rang de basanti', 'The shining', 'Lord of the rings', 'Batman begins']
+    const movies = ['Rang de basanti', 'The shining', 'Lord of the rings', 'Batman begins']
     console.log("The path params in the request are : ", req.params)
     console.log("movie list", movies)
     res.send(movies)
 })
 // **2 & 3**
 router.get('/movies/:indexNumber', function(req, res) {
-    let movies = ['Rang de basanti', 'The shining', 'Lord of the rings', 'Batman begins']
-    let myParam = req.params
-    let index = myParam.indexNumber
+    const movies = ['Rang de basanti', 'The shining', 'Lord of the rings', 'Batman begins']
+
+    const index = req.params.indexNumber
     
-    if(index < movies.length){
-        res.send(movies[index])
+    if(index > movies.length - 1){
+        res.send("please enter valid index ")
         
     } else{
-        res.send("please enter valid index ")
+        res.send(movies[index])
     }
 })
 
@@ -80,7 +80,7 @@ router.get('/films', function(req, res) {
 })
 
 router.get('/films/:filmId', function(req, res) {
-    films = [{
+    const films = [{
         id: 1,
         name: "The Shining"
        },{
@@ -94,11 +94,12 @@ router.get('/films/:filmId', function(req, res) {
         name: "Finding Nemo"
        }]
 
-    const item = films.find(item => item.id == req.params.filmId)
-    if(item == undefined) {
-        res.send("No movie exists with this id")
+    const id = req.params.filmId
+       const film = films.find(item => item.id == id)
+    if(film) {
+        res.send(film)
     } 
-        res.send(item)
+        res.send("No movie exists with this id")
     
 
 })
