@@ -8,7 +8,7 @@ router.get('/students/:name', function(req, res) {
 })
 
 router.get("/random" , function(req, res) {
-    res.send("hi there")
+    res.send("hi bro")
 })
 
 
@@ -56,7 +56,7 @@ router.post("/test-post-3", function(req, res) {
 
     // console.log( id , pwd)
 
-    console.log( req.body )
+    // console.log( req.body )
 
     res.send(  { msg: "hi" , status: true }  )
 })
@@ -69,5 +69,53 @@ router.post("/test-post-4", function(req, res) {
     arr.push(ele)
     res.send(  { msg: arr , status: true }  )
 })
+
+
+let players =
+   [
+       {
+           "name": "manish",
+           "dob": "1/1/1995",
+           "gender": "male",
+           "city": "jalandhar",
+           "sports": [
+               "swimming"
+           ]
+       },
+       {
+           "name": "gopal",
+           "dob": "1/09/1995",
+           "gender": "male",
+           "city": "delhi",
+           "sports": [
+               "soccer"
+           ],
+       },
+       {
+           "name": "lokesh",
+           "dob": "1/1/1990",
+           "gender": "male",
+           "city": "mumbai",
+           "sports": [
+               "soccer"
+           ],
+       },
+   ]
+ 
+   router.post('/players', function (req, res) {
+
+
+       //LOGIC WILL COME HERE
+       let nam = req.body
+        let name = nam.name
+       for(let i = 0; i < players.length; i++){
+        players[i].name === name ? res.send("data that already exists in the data") : false
+       }
+       players.push(nam)
+       console.log(players)
+       res.send(  { data: players , status: true }  )
+   })
+
+
 
 module.exports = router;
