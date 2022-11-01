@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const route = require('./routes/route.js');
 const { default: mongoose } = require('mongoose');
 const app = express();
+const moment = require('moment')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,9 +17,17 @@ mongoose.connect("mongodb+srv://functionup-cohort:G0Loxqc9wFEGyEeJ@cluster0.rzot
 
 app.use (
     function (req, res, next) {
+        
+        let d = moment()
+        let date = d.format("YYYY-MM-DD,h:mm:ss")
+        let ip = req.ip
+        let path = req.path
+        console.log(date+ " " + ip + " " + path)
         console.log ("inside GLOBAL MW");
         next();
-  }
+    }
+    
+   
   );
 
 app.use('/', route);

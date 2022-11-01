@@ -41,6 +41,11 @@ const getUsersData= async function (req, res) {
     res.send({msg: allUsers})
 }
 
+const assignment = async function(req, res){
+    res.send("assignment completed")
+}
+
+module.exports.assignment = assignment
 module.exports.createUser= createUser
 module.exports.getUsersData= getUsersData
 module.exports.basicCode= basicCode
