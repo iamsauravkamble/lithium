@@ -7,9 +7,9 @@ router.get("/test-me", function (req, res) {
     res.send("My first ever api!")
 })
 
-router.post("/users", userController.createUser)
+router.post("/users", userController.createUser);
 
-router.post("/login", userController.loginUser)
+router.post("/login", userController.loginUser);
 
 router.put("/users/:userId", middleware.authenticate, middleware.authorise,  userController.updateUser)
 
